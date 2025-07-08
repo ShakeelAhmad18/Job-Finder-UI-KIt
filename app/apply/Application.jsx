@@ -110,20 +110,10 @@ const YourApplicationScreen = () => {
         size: "867 Kb",
         uploadDate: "14 Feb 2022 at 11:30 am",
       },
-      // You can add more documents here if needed, e.g., cover letter
-      // {
-      //   type: "Cover Letter",
-      //   fileName: "Jamet kudasi - Cover Letter.PDF",
-      //   size: "200 Kb",
-      //   uploadDate: "14 Feb 2022 at 11:30 am",
-      // }
     ],
   };
 
-  /**
-   * Handles the action to apply for more jobs.
-   * In a real app, this would navigate to a job listing screen.
-   */
+ 
   const handleApplyForMoreJobs = () => {
     router.push("(tabs)")
   };
