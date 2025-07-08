@@ -115,7 +115,7 @@ const SpecializationCard = ({ specialization, isSelected, onPress }) => {
       iconName = "code-slash-outline";
       break;
     default:
-      iconName = "cube-outline"; // Default icon
+      iconName = "cube-outline"; 
   }
 
   return (
@@ -123,7 +123,7 @@ const SpecializationCard = ({ specialization, isSelected, onPress }) => {
       style={[
         cardStyles.card,
         isSelected ? cardStyles.cardActive : cardStyles.cardInactive,
-        { width: CARD_WIDTH, margin: CARD_MARGIN / 2 }, // Apply margin for grid spacing
+        { width: CARD_WIDTH, margin: CARD_MARGIN / 2 }, 
       ]}
       onPress={() => onPress(specialization)}
       activeOpacity={0.7}
@@ -139,7 +139,7 @@ const SpecializationCard = ({ specialization, isSelected, onPress }) => {
         <Ionicons
           name={iconName}
           size={32}
-          color={isSelected ? COLORS.CHIP_ACTIVE_TEXT : COLORS.ACCENT_ORANGE} // Icon color based on state
+          color={isSelected ? COLORS.CHIP_ACTIVE_TEXT : COLORS.ACCENT_ORANGE} 
         />
       </View>
       <Text
@@ -276,13 +276,12 @@ const SpecializationScreen = () => {
         onFilterPress={() => router.push("findJob/filters")}
         insets={insets}
       />
-
       <ScrollView
         contentContainerStyle={[
           styles.scrollViewContent,
-          { paddingBottom: bottomButtonHeight + SPACING.L }, // Ensure enough padding for the fixed button
+          { paddingBottom: bottomButtonHeight + SPACING.L }, 
         ]}
-        showsVerticalScrollIndicator={false} // Hide scroll indicator for cleaner look
+        showsVerticalScrollIndicator={false} 
       >
         {/* Main Heading */}
         <Text style={styles.mainHeading}>What is your specialization?</Text>
@@ -307,7 +306,7 @@ const SpecializationScreen = () => {
           </View>
           <TouchableOpacity
             style={styles.filterButtonInline}
-            onPress={() => console.log("Inline filter pressed")}
+            onPress={() => router.push("findJob/filters")}
           >
             <Ionicons
               name="options-outline"

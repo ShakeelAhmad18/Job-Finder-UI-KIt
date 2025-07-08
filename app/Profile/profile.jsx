@@ -214,14 +214,14 @@ const ProfileScreen = () => {
         <TouchableOpacity
           style={styles.modalOverlay}
           activeOpacity={1}
-          onPressOut={() => setShowSettings(false)} 
+          onPressOut={() => setShowSettings(false)}
         >
           <View style={styles.settingsDropdown}>
             <TouchableOpacity
               style={styles.settingsItem}
               onPress={() => {
                 setShowSettings(false);
-                router.push("/notifications");
+                router.push("notification/Notifications");
               }}
             >
               <Ionicons
@@ -241,6 +241,17 @@ const ProfileScreen = () => {
                 color={COLORS.TEXT_DARK}
               />
               <Text style={styles.settingsText}>Logout</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.settingsItem}
+              onPress={()=>router.push("Profile/Settings")}
+            >
+              <MaterialIcons
+                name="settings"
+                size={FONT_SIZES.BODY_LARGE}
+                color={COLORS.TEXT_DARK}
+              />
+              <Text style={styles.settingsText}>Settings</Text>
             </TouchableOpacity>
           </View>
         </TouchableOpacity>
@@ -281,6 +292,7 @@ const ProfileScreen = () => {
             </View>
             <TouchableOpacity
               style={styles.editButton}
+              onPress={() => router.push("Profile/EditProfile")}
             >
               <Feather
                 name="edit-2"
@@ -390,9 +402,7 @@ const ProfileScreen = () => {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Languages</Text>
-            <TouchableOpacity
-              onPress={() => router.push("Profile/Language")}
-            >
+            <TouchableOpacity onPress={() => router.push("Profile/Language")}>
               <Feather
                 name="edit-2"
                 size={FONT_SIZES.BODY_LARGE}
@@ -457,7 +467,7 @@ const ProfileScreen = () => {
           <TouchableOpacity style={styles.resumeCard}>
             <MaterialCommunityIcons
               name="file-document-outline"
-              size={FONT_SIZES.H1 + 4} 
+              size={FONT_SIZES.H1 + 4}
               color={COLORS.PRIMARY_BLUE}
             />
             <View style={styles.resumeDetails}>

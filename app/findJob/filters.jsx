@@ -14,9 +14,7 @@ import { COLORS, SPACING, FONT_SIZES } from "../../constants/helpers";
 
 const { width: screenWidth } = Dimensions.get("window");
 
-/**
- * FilterHeader Component
- */
+
 const FilterHeader = ({ onBackPress, insets }) => {
   return (
     <View
@@ -26,7 +24,7 @@ const FilterHeader = ({ onBackPress, insets }) => {
         <Ionicons name="arrow-back" size={24} color={COLORS.TEXT_DARK} />
       </TouchableOpacity>
       <Text style={headerStyles.title}>Filter</Text>
-      <View style={headerStyles.placeholder} />{" "}
+      <View style={headerStyles.placeholder} />
       {/* Placeholder for alignment */}
     </View>
   );
@@ -38,7 +36,7 @@ const headerStyles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: SPACING.XL,
-    backgroundColor: COLORS.BACKGROUND_BLUE, // Dark blue background for header
+    backgroundColor: COLORS.BACKGROUND, 
     paddingBottom: SPACING.L,
     borderBottomLeftRadius: SPACING.L,
     borderBottomRightRadius: SPACING.L,
@@ -57,13 +55,11 @@ const headerStyles = StyleSheet.create({
     color: COLORS.PRIMARY_DARK_BLUE,
   },
   placeholder: {
-    width: 24 + SPACING.XS * 2, // Match icon button width for centering
+    width: 24 + SPACING.XS * 2, 
   },
 });
 
-/**
- * FilterSection Component (Collapsible)
- */
+
 const FilterSection = ({ title, children, isExpanded, onToggleExpand }) => {
   return (
     <View style={sectionStyles.sectionContainer}>
@@ -115,9 +111,7 @@ const sectionStyles = StyleSheet.create({
   },
 });
 
-/**
- * RadioButton Component
- */
+
 const RadioButton = ({ label, isSelected, onPress }) => {
   return (
     <TouchableOpacity style={radioStyles.container} onPress={onPress}>
@@ -165,9 +159,7 @@ const radioStyles = StyleSheet.create({
   },
 });
 
-/**
- * Checkbox Component
- */
+
 const Checkbox = ({ label, isSelected, onPress }) => {
   return (
     <TouchableOpacity style={checkboxStyles.container} onPress={onPress}>
@@ -212,9 +204,7 @@ const checkboxStyles = StyleSheet.create({
   },
 });
 
-/**
- * FilterChip Component (Reused from SearchScreen, slightly adapted for filter context)
- */
+
 const FilterChip = ({ title, isSelected, onPress }) => {
   return (
     <TouchableOpacity
@@ -265,13 +255,9 @@ const chipStyles = StyleSheet.create({
   },
 });
 
-/**
- * Salary Range Slider (Simplified for demonstration)
- * In a real app, you'd use a dedicated library like react-native-range-slider
- */
+
 const SalaryRangeSlider = ({ min, max, onValuesChange }) => {
-  // This is a simplified representation. A real slider would involve more complex logic
-  // and potentially a third-party library.
+  
   return (
     <View style={salarySliderStyles.container}>
       <View style={salarySliderStyles.track}>
@@ -289,12 +275,12 @@ const SalaryRangeSlider = ({ min, max, onValuesChange }) => {
 
 const salarySliderStyles = StyleSheet.create({
   container: {
-    paddingHorizontal: SPACING.S, // Inner padding for the slider visual
+    paddingHorizontal: SPACING.S, 
     paddingVertical: SPACING.M,
   },
   track: {
     height: 4,
-    backgroundColor: COLORS.BACKGROUND, // Inactive track color
+    backgroundColor: COLORS.BACKGROUND, 
     borderRadius: 2,
     position: "relative",
     marginBottom: SPACING.S,
@@ -351,7 +337,6 @@ const salarySliderStyles = StyleSheet.create({
   },
 });
 
-// Main Filters Screen Component
 const FiltersScreen = () => {
   const insets = useSafeAreaInsets();
   const router = useRouter();
@@ -497,17 +482,16 @@ const FiltersScreen = () => {
     "Programmer",
   ];
 
-  const bottomButtonsHeight = SPACING.XXL + SPACING.L + insets.bottom; // Estimate height for fixed buttons
+  const bottomButtonsHeight = SPACING.XXL + SPACING.L + insets.bottom; 
 
   return (
     <View style={styles.container}>
       {/* Header */}
       <FilterHeader onBackPress={() => router.back()} insets={insets} />
-
       <ScrollView
         contentContainerStyle={[
           styles.scrollViewContent,
-          { paddingBottom: bottomButtonsHeight + SPACING.L }, // Ensure space for fixed buttons
+          { paddingBottom: bottomButtonsHeight + SPACING.L },
         ]}
         showsVerticalScrollIndicator={false}
       >
@@ -526,7 +510,6 @@ const FiltersScreen = () => {
             />
           ))}
         </FilterSection>
-
         {/* Type of workplace Section */}
         <FilterSection
           title="Type of workplace"
@@ -544,7 +527,6 @@ const FiltersScreen = () => {
             />
           ))}
         </FilterSection>
-
         {/* Job type Section */}
         <FilterSection
           title="Job type"
@@ -568,7 +550,6 @@ const FiltersScreen = () => {
             ))}
           </View>
         </FilterSection>
-
         {/* Position level Section */}
         <FilterSection
           title="Position level"
@@ -592,7 +573,6 @@ const FiltersScreen = () => {
             ))}
           </View>
         </FilterSection>
-
         {/* City Section */}
         <FilterSection
           title="City"
@@ -610,7 +590,6 @@ const FiltersScreen = () => {
             />
           ))}
         </FilterSection>
-
         {/* Salary Section */}
         <FilterSection
           title="Salary"
@@ -639,7 +618,6 @@ const FiltersScreen = () => {
             />
           ))}
         </FilterSection>
-
         {/* Specialization Section */}
         <FilterSection
           title="Specialization"
@@ -662,7 +640,6 @@ const FiltersScreen = () => {
           ))}
         </FilterSection>
       </ScrollView>
-
       {/* Fixed Bottom Buttons */}
       <View
         style={[

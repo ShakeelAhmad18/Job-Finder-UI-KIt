@@ -50,7 +50,7 @@ const SignInScreen = () => {
       });
       if (signInAttempt.status === "complete") {
         await setActive({ session: signInAttempt.createdSessionId });
-        router.replace("/app/(tabs)/index");
+        router.replace("(tabs)");
       } else {
         Alert.alert("Error", "Sign in failed, please try again");
         console.error(JSON.stringify(signInAttempt, null, 2));

@@ -20,11 +20,13 @@ import {
   SHADOWS,
 } from "../../constants/helpers";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 const VerifyEmailScreen = ({ email, onBack }) => {
   const { isLoaded, signUp, setActive } = useSignUp();
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
+  const router=useRouter();
 
   const handleVerification = async () => {
     if (!isLoaded) return;
@@ -39,6 +41,7 @@ const VerifyEmailScreen = ({ email, onBack }) => {
       if (signupAttempt.status === "complete") {
         await setActive({ session: signupAttempt.createdSessionId });
       }
+      router.replace("(tabs)");
     } catch (error) {
       Alert.alert(
         "Error",
