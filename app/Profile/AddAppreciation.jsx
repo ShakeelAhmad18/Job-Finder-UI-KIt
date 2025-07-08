@@ -107,22 +107,14 @@ const AddAppreciationScreen = () => {
   // State for showing date picker
   const [showEndDatePicker, setShowEndDatePicker] = useState(false);
 
-  /**
-   * Handles the change event for the date picker.
-   * @param {Event} event - The event object.
-   * @param {Date} selectedDate - The date selected by the user.
-   */
+ 
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || endDate;
     setShowEndDatePicker(Platform.OS === "ios"); // Hide picker on Android after selection
     setEndDate(currentDate);
   };
 
-  /**
-   * Formats a Date object into a readable string (e.g., "Jan 2023").
-   * @param {Date} date - The date object to format.
-   * @returns {string} The formatted date string.
-   */
+  
   const formatDate = (date) => {
     if (!date) return "";
     return date.toLocaleDateString("en-US", {
@@ -131,10 +123,7 @@ const AddAppreciationScreen = () => {
     });
   };
 
-  /**
-   * Handles the saving of the appreciation entry.
-   * Performs basic validation and then simulates saving the data.
-   */
+  
   const handleSave = () => {
     if (!awardName.trim() || !categoryAchievement.trim()) {
       Alert.alert("Error", "Award Name and Category/Achievement are required.");
@@ -150,10 +139,6 @@ const AddAppreciationScreen = () => {
 
     console.log("Saving Appreciation:", appreciationData);
     Alert.alert("Success", "Appreciation entry saved successfully!");
-    // In a real app, you would typically:
-    // 1. Send appreciationData to your backend/database.
-    // 2. Handle success/error from the API.
-    // 3. Navigate back: router.back();
   };
 
   return (
@@ -174,10 +159,9 @@ const AddAppreciationScreen = () => {
           />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Add Appreciation</Text>
-        <View style={styles.headerIconContainer} />{" "}
+        <View style={styles.headerIconContainer} />
         {/* Placeholder for spacing */}
       </View>
-
       <ScrollView
         style={styles.contentScrollView}
         contentContainerStyle={styles.scrollViewContentContainer}
@@ -194,7 +178,6 @@ const AddAppreciationScreen = () => {
             onChangeText={setAwardName}
           />
         </View>
-
         {/* Category/Achievement Achieved Input */}
         <View style={styles.inputGroup}>
           <Text style={styles.inputLabel}>Category/Achievement achieved</Text>
@@ -206,7 +189,6 @@ const AddAppreciationScreen = () => {
             onChangeText={setCategoryAchievement}
           />
         </View>
-
         {/* End Date Input */}
         <View style={styles.inputGroup}>
           <Text style={styles.inputLabel}>End date</Text>
@@ -232,7 +214,6 @@ const AddAppreciationScreen = () => {
             />
           )}
         </View>
-
         {/* Description Input */}
         <View style={styles.inputGroup}>
           <Text style={styles.inputLabel}>Description</Text>
@@ -244,14 +225,12 @@ const AddAppreciationScreen = () => {
             textAlignVertical="top"
             value={description}
             onChangeText={setDescription}
-            maxLength={1000} // Optional: limit character count
+            maxLength={1000} 
           />
         </View>
-
         {/* Spacer to push the button to the bottom */}
         <View style={{ flex: 1 }} />
       </ScrollView>
-
       {/* Save Button */}
       <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
         <Text style={styles.saveButtonText}>SAVE</Text>

@@ -169,21 +169,14 @@ const AddResumeScreen = () => {
     );
   };
 
-  /**
-   * Handles saving the resume.
-   * In a real app, this would typically involve:
-   * 1. Confirming the uploaded file (if not already sent to backend during upload).
-   * 2. Showing a success/error message.
-   * 3. Navigating back or to another screen.
-   */
+  
   const handleSave = () => {
     if (!uploadedResume) {
       Alert.alert("Error", "Please upload a resume before saving.");
       return;
     }
     Alert.alert("Success", "Resume saved successfully!");
-    // In a real app, you might navigate back after saving:
-    // router.back();
+    
   };
 
   return (
@@ -204,17 +197,15 @@ const AddResumeScreen = () => {
           />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Add Resume</Text>
-        <View style={styles.headerIconContainer} />{" "}
+        <View style={styles.headerIconContainer} />
         {/* Placeholder for spacing */}
       </View>
-
       <ScrollView
         style={styles.contentScrollView}
         contentContainerStyle={styles.scrollViewContentContainer}
         showsVerticalScrollIndicator={false}
       >
         {uploadedResume ? (
-          // --- Display Uploaded Resume ---
           <View style={styles.uploadedResumeCard}>
             <MaterialCommunityIcons
               name="file-pdf-box"
@@ -243,7 +234,6 @@ const AddResumeScreen = () => {
             </TouchableOpacity>
           </View>
         ) : (
-          // --- Upload Area ---
           <TouchableOpacity
             style={styles.uploadArea}
             onPress={handlePickDocument}
@@ -256,16 +246,13 @@ const AddResumeScreen = () => {
             <Text style={styles.uploadText}>Upload CV/Resume</Text>
           </TouchableOpacity>
         )}
-
         <Text style={styles.uploadHint}>
           Upload files in PDF format up to 5 MB. Just upload it once and you can
           use it in your next application.
         </Text>
-
         {/* Spacer to push the button to the bottom */}
         <View style={{ flex: 1 }} />
       </ScrollView>
-
       {/* Save Button */}
       <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
         <Text style={styles.saveButtonText}>SAVE</Text>

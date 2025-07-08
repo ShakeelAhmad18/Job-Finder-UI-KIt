@@ -285,8 +285,7 @@ const AddSkillScreen = () => {
       "Success",
       `Successfully saved ${selectedSkills.length} skill(s).`
     );
-    // In a real app, you might navigate back after saving:
-    // router.back();
+  
   };
 
   return (
@@ -294,7 +293,6 @@ const AddSkillScreen = () => {
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      {/* Header */}
       <View style={styles.topHeader}>
         <TouchableOpacity
           onPress={() => router.back()}
@@ -307,16 +305,13 @@ const AddSkillScreen = () => {
           />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Add Skill</Text>
-        <View style={styles.headerIconContainer} />{" "}
-        {/* Placeholder for spacing */}
+        <View style={styles.headerIconContainer} />
       </View>
-
       <ScrollView
         style={styles.contentScrollView}
         contentContainerStyle={styles.scrollViewContentContainer}
         showsVerticalScrollIndicator={false}
       >
-        {/* Search Input */}
         <View style={styles.searchBarContainer}>
           <Ionicons
             name="search"
@@ -344,8 +339,6 @@ const AddSkillScreen = () => {
             </TouchableOpacity>
           )}
         </View>
-
-        {/* Selected Skills Display */}
         {selectedSkills.length > 0 && (
           <View style={styles.selectedSkillsContainer}>
             <Text style={styles.selectedSkillsLabel}>Selected Skills:</Text>
@@ -368,11 +361,9 @@ const AddSkillScreen = () => {
             </View>
           </View>
         )}
-
-        {/* Skill List */}
         <FlatList
           data={filteredSkills}
-          keyExtractor={(item, index) => `${item}-${index}`} // Ensures unique keys
+          keyExtractor={(item, index) => `${item}-${index}`} 
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.skillItem}
@@ -388,13 +379,9 @@ const AddSkillScreen = () => {
               <Text style={styles.emptyListText}>No skills found.</Text>
             </View>
           )}
-          // Disable scrolling of FlatList itself if it's nested in a ScrollView
-          // This allows the parent ScrollView to handle all scrolling
           scrollEnabled={false}
         />
       </ScrollView>
-
-      {/* Save Button - fixed at the bottom */}
       <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
         <Text style={styles.saveButtonText}>SAVE</Text>
       </TouchableOpacity>
@@ -433,9 +420,8 @@ const styles = StyleSheet.create({
     paddingTop: SPACING.L,
   },
   scrollViewContentContainer: {
-    flexGrow: 1, // Allows content to grow and push the button down
-    // FIX: Increased paddingBottom to ensure content clears the fixed SAVE button
-    paddingBottom: SPACING.XXL * 3, // Roughly 96 units of padding
+    flexGrow: 1, 
+    paddingBottom: SPACING.XXL * 3,
   },
   searchBarContainer: {
     flexDirection: "row",
@@ -443,7 +429,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.WHITE,
     borderRadius: BORDER_RADIUS.M,
     paddingHorizontal: SPACING.M,
-    marginBottom: SPACING.L, // Space below search bar
+    marginBottom: SPACING.L, 
     borderWidth: 1,
     borderColor: COLORS.BORDER_COLOR_LIGHT,
     ...SHADOWS.small,

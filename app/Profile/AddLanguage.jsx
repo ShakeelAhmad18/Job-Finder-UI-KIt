@@ -16,7 +16,6 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
-// --- Constants (re-using from previous responses for consistency) ---
 export const COLORS = {
   BACKGROUND: "#F8F8F8",
   WHITE: "#FFFFFF",
@@ -95,9 +94,7 @@ export const SHADOWS = {
     elevation: 8,
   },
 };
-// --- End of Constants ---
 
-// Comprehensive list of languages with emojis as flags
 const allLanguages = [
   { id: "arabic", name: "Arabic", flag: "🇸🇦" },
   { id: "indonesian", name: "Indonesian", flag: "🇮🇩" },
@@ -116,34 +113,28 @@ const allLanguages = [
   { id: "thai", name: "Thai", flag: "🇹🇭" },
   { id: "turkish", name: "Turkish", flag: "🇹🇷" },
   { id: "vietnamese", name: "Vietnamese", flag: "🇻🇳" },
-  // Add more languages as needed
 ];
 
-const proficiencyLevels = Array.from({ length: 11 }, (_, i) => i); // Levels 0 to 10
+const proficiencyLevels = Array.from({ length: 11 }, (_, i) => i); 
 
 const AddLanguageScreen = () => {
   const router = useRouter();
 
-  // State for the current step in the add language flow
-  const [step, setStep] = useState("search"); // 'search' or 'details'
+  
+  const [step, setStep] = useState("search"); 
 
-  // State for the language being added/edited
-  const [selectedLanguage, setSelectedLanguage] = useState(null); // { id, name, flag }
+  const [selectedLanguage, setSelectedLanguage] = useState(null); 
   const [isFirstLanguage, setIsFirstLanguage] = useState(false);
-  const [oralLevel, setOralLevel] = useState(null); // Level 0-10
-  const [writtenLevel, setWrittenLevel] = useState(null); // Level 0-10
+  const [oralLevel, setOralLevel] = useState(null); 
+  const [writtenLevel, setWrittenLevel] = useState(null); 
 
-  // State for the proficiency selection modal
   const [showProficiencyModal, setShowProficiencyModal] = useState(false);
-  const [currentProficiencyType, setCurrentProficiencyType] = useState(null); // 'oral' or 'written'
+  const [currentProficiencyType, setCurrentProficiencyType] = useState(null); 
 
-  /**
-   * Filters the list of all languages based on the search query.
-   * Uses useMemo to optimize performance by memoizing the filtered list.
-   */
+  
   const filteredLanguages = useMemo(() => {
     if (!searchQuery) {
-      return allLanguages; // Show all languages if search query is empty
+      return allLanguages; 
     }
     const lowerCaseQuery = searchQuery.toLowerCase();
     return allLanguages.filter((lang) =>
@@ -151,32 +142,22 @@ const AddLanguageScreen = () => {
     );
   }, [searchQuery]);
 
-  const [searchQuery, setSearchQuery] = useState(""); // State for search input
+  const [searchQuery, setSearchQuery] = useState(""); 
 
-  /**
-   * Handles selecting a language from the search list.
-   * Sets the selected language and moves to the details step.
-   * @param {object} language - The selected language object.
-   */
+  
   const handleLanguageSelect = (language) => {
     setSelectedLanguage(language);
     setStep("details");
-    setSearchQuery(""); // Clear search query
+    setSearchQuery(""); 
   };
 
-  /**
-   * Opens the proficiency selection modal for a specific type (oral/written).
-   * @param {string} type - 'oral' or 'written'.
-   */
+  
   const openProficiencyModal = (type) => {
     setCurrentProficiencyType(type);
     setShowProficiencyModal(true);
   };
 
-  /**
-   * Handles selecting a proficiency level from the modal.
-   * @param {number} level - The selected proficiency level.
-   */
+  
   const handleProficiencySelect = (level) => {
     if (currentProficiencyType === "oral") {
       setOralLevel(level);
@@ -186,10 +167,7 @@ const AddLanguageScreen = () => {
     setShowProficiencyModal(false);
   };
 
-  /**
-   * Handles the saving of the language entry.
-   * Performs basic validation and then simulates saving the data.
-   */
+  
   const handleSave = () => {
     if (!selectedLanguage) {
       Alert.alert("Error", "Please select a language.");
@@ -213,10 +191,6 @@ const AddLanguageScreen = () => {
     };
 
     Alert.alert("Success", `${selectedLanguage.name} added successfully!`);
-    // In a real app, you would typically:
-    // 1. Send languageData to your backend/database.
-    // 2. Handle success/error from the API.
-    // 3. Navigate back: router.back();
   };
 
   return (
@@ -237,17 +211,15 @@ const AddLanguageScreen = () => {
           />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Add Language</Text>
-        <View style={styles.headerIconContainer} />{" "}
+        <View style={styles.headerIconContainer} />
         {/* Placeholder for spacing */}
       </View>
-
       <ScrollView
         style={styles.contentScrollView}
         contentContainerStyle={styles.scrollViewContentContainer}
         showsVerticalScrollIndicator={false}
       >
         {step === "search" ? (
-          // --- Step 1: Search Language ---
           <View style={styles.searchSection}>
             <View style={styles.searchBarContainer}>
               <Ionicons
@@ -276,7 +248,6 @@ const AddLanguageScreen = () => {
                 </TouchableOpacity>
               )}
             </View>
-
             <FlatList
               data={filteredLanguages}
               keyExtractor={(item) => item.id}
@@ -302,11 +273,10 @@ const AddLanguageScreen = () => {
                   <Text style={styles.emptyListText}>No languages found.</Text>
                 </View>
               )}
-              scrollEnabled={false} // Let parent ScrollView handle scrolling
+              scrollEnabled={false} 
             />
           </View>
         ) : (
-          // --- Step 2: Define Language Details ---
           <View style={styles.detailsSection}>
             {/* Selected Language Display */}
             <View style={styles.selectedLanguageDisplay}>
@@ -317,7 +287,6 @@ const AddLanguageScreen = () => {
                 {selectedLanguage?.name}
               </Text>
             </View>
-
             {/* First Language Switch */}
             <View style={styles.inputGroup}>
               <View style={styles.switchContainer}>
@@ -334,8 +303,6 @@ const AddLanguageScreen = () => {
                 />
               </View>
             </View>
-
-            {/* Oral Proficiency Input */}
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Oral</Text>
               <TouchableOpacity
@@ -354,8 +321,6 @@ const AddLanguageScreen = () => {
                 />
               </TouchableOpacity>
             </View>
-
-            {/* Written Proficiency Input */}
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Written</Text>
               <TouchableOpacity
@@ -374,22 +339,17 @@ const AddLanguageScreen = () => {
                 />
               </TouchableOpacity>
             </View>
-
             <Text style={styles.proficiencyHint}>
               Proficiency level : 0 - Poor, 10 - Very good
             </Text>
           </View>
         )}
       </ScrollView>
-
-      {/* Save Button */}
-      {step === "details" && ( // Only show save button on details step
+      {step === "details" && (
         <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
           <Text style={styles.saveButtonText}>SAVE</Text>
         </TouchableOpacity>
       )}
-
-      {/* Proficiency Level Selection Modal */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -399,10 +359,10 @@ const AddLanguageScreen = () => {
         <TouchableOpacity
           style={styles.modalOverlay}
           activeOpacity={1}
-          onPressOut={() => setShowProficiencyModal(false)} // Close when clicking outside
+          onPressOut={() => setShowProficiencyModal(false)} 
         >
           <View style={styles.proficiencyModalContent}>
-            <View style={styles.modalHandle} /> {/* Drag handle */}
+            <View style={styles.modalHandle} />
             <FlatList
               data={proficiencyLevels}
               keyExtractor={(item) => item.toString()}
