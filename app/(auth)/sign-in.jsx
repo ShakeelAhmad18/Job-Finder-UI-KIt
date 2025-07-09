@@ -1,5 +1,5 @@
-import { useSignIn } from "@clerk/clerk-expo";
-import { Link, useRouter } from "expo-router";
+import { useAuth, useSignIn } from "@clerk/clerk-expo";
+import { Link, Redirect, useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   Alert,
@@ -32,6 +32,11 @@ const SignInScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const {isSignedIn}=useAuth();
+
+   if (isSignedIn) {
+      return <Redirect href={"/"} />;
+    }
 
   const handleSubmit = async () => {
     if (!email || !password) {

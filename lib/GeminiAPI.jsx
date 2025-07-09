@@ -1,32 +1,4 @@
-// lib/GeminiAPI.jsx
 
-/**
- * Sends a text prompt and optional image data to the Gemini API (gemini-2.0-flash model)
- * to generate a natural language response, optionally with a structured JSON format.
- *
- * This function is designed for real-time text generation and includes:
- * - Asynchronous execution using async/await.
- * - Robust error handling for network issues and API-specific errors.
- * - Standard JSON payload construction.
- * - Parsing of the API's JSON response, handling both plain text and structured JSON.
- * - Support for sending inline image data for multimodal understanding.
- *
- * @param {string} prompt The user's input text prompt for the AI model.
- * @param {object} [options] Optional configuration for the API call.
- * @param {object} [options.responseSchema] A JSON schema defining the expected structure of the AI's response.
- * If provided, responseMimeType will be set to "application/json".
- * @param {object} [options.inlineData] An object containing image data for multimodal prompts.
- * Should have `mimeType` (e.g., "image/jpeg") and `data` (base64 string).
- * @param {number} [options.temperature=0.7] Controls the randomness of the output.
- * @param {number} [options.topK=40] Considers the top K most likely tokens.
- * @param {number} [options.topP=0.95] Considers the smallest set of tokens whose cumulative probability exceeds topP.
- * @returns {Promise<string|object|Array>} A promise that resolves with the generated content.
- * This can be a string (for plain text) or an object/array (for JSON).
- * If the API call fails or the response is malformed,
- * the promise will reject with an error message.
- * @throws {Error} If the API request fails (e.g., network error, API returns non-OK status)
- * or if the response structure is unexpected.
- */
 export async function generateAIResponse(prompt, options = {}) {
   let parts = [];
 
@@ -66,10 +38,9 @@ export async function generateAIResponse(prompt, options = {}) {
     generationConfig: generationConfig,
   };
 
-  // The API key is left as an empty string; Canvas will automatically provide it at runtime.
-  // The user's provided API key was "AIzaSyCE-b8i85hZ-ZPUaS0ZR3hFIzDFHIrDvgg"
-  const apiKey = "AIzaSyAR5K_OSIXUvAns_VRjZiiuj3v1AKEJYd4"; // Leave empty for Canvas auto-injection
-  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+ 
+  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.API_KEY}`;
 
   try {
     const response = await fetch(apiUrl, {

@@ -10,10 +10,9 @@ export const COLORS = {
   LIGHT_BLUE: "#E0F2F7",
   LIGHT_PURPLE: "#E6E6FA", // This will be the filter icon background
   LIGHT_ORANGE: "#FFF0E0",
-  SHADOW: "rgba(0, 0, 0, 0.08)", // Updated to match user's provided value
+  SHADOW: "rgba(0, 0, 0, 0.08)", 
   BORDER_LIGHT: "#E0E0E0",
-  // Derived colors for clarity and consistency with the image
-  FILTER_ICON_BG: "#E6E6FA", // From LIGHT_PURPLE
+  FILTER_ICON_BG: "#E6E6FA", 
   FILTER_ICON_COLOR: "#0D0140", // From TEXT_DARK
   CHIP_ACTIVE_BG: "#FF7A00", // From ACCENT_ORANGE
   BACKGROUND_LIGHT: '#F5F7FA',
